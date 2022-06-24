@@ -7,17 +7,17 @@
     q-card-section
       .row
         .col-7.q-pb-md
-          .label Administrator
+          .label {{ $t('pages.marketplace.role.administrator') }}
           account-item(
             :address="market.admin?.address"
             flat
           )
         .col-5
           .row.justify-end
-            .label Number of participants: {{participants.length}}
+            .label {{ $t('pages.marketplace.details.numberPaparticipantsTitle') }}: {{participants.length}}
       .row
         .col-7.q-pb-md
-          .label Owner
+          .label {{ $t('pages.marketplace.role.owner') }}
           account-item(
             :address="market.owner?.address"
             flat

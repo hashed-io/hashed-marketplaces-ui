@@ -1,6 +1,6 @@
 <template lang="pug">
 .row.justify-center
-  div.text-grey-8.q-pr-sm.contact Contact:
+  div.text-grey-8.q-pr-sm.contact {{$t('general.footer.contactTitle')}}:
   a(class="contact link" href="https://t.me/stayafloat" target="_blank") {{'Telegram Link'}}
 .row.justify-center
   a(class="contact link" href="mailto:admin@email.io" target="_blank") {{'admin@email.io'}}

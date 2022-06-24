@@ -1,6 +1,6 @@
 <template lang="pug">
 #container
-    .text-h4 Applicants
+    .text-h4 {{$t('pages.marketplace.details.applicantsTitle')}}
     #applicantDetails(v-if="applicants.length > 0")
       q-card.q-my-sm(v-for="applicant in applicants")
         applicant-expander-item(v-bind="applicant" @onEnroll="onEnrollApplicant" @onReject="onRejectApplicant")

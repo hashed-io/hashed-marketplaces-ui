@@ -8,19 +8,19 @@ q-form.q-pa-xl.q-gutter-y-md(@submit="submitForm")
       v-close-popup
       size="sm"
     )
-    .text-h4.q-mb-lg Create new marketplace
+    .text-h4.q-mb-lg {{$t('pages.marketplace.createForm.title')}}
     t-input(
       testid="label_input"
-      label="Label"
+      :label="$t('pages.marketplace.createForm.label')"
       v-model="label"
       :rules="[rules.required]"
-      placeholder="Please write a description"
+      :placeholder="$t('pages.marketplace.createForm.placeholder')"
       autofocus
     )
     q-btn.float-right.q-mb-md(
       data-testid="submit_btn"
       unelevated
-      label="Create marketplace"
+      :label="$t('pages.marketplace.createForm.button')"
       color="primary"
       size="md"
       type="submit"

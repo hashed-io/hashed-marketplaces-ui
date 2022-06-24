@@ -20,8 +20,8 @@
     active-class="text-primary text-weight-bolder"
     class="bg-white text-grey-5"
   )
-    q-tab(name="myMarketplaces" label="My marketplaces")
-    q-tab(name="allMarketplaces" label="All marketplaces")
+    q-tab(name="myMarketplaces" :label="$t('pages.marketplace.tabs.myMarketplaces')")
+    q-tab(name="allMarketplaces" :label="$t('pages.marketplace.tabs.allMarketplaces')")
 
   q-tab-panels(v-model="tab" animated)
     q-tab-panel(name="myMarketplaces")
