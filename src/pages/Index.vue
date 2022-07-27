@@ -37,6 +37,7 @@
             label-width="100px"
             outlined
           )
+        .col-12 Query: {{getFilename}}
         .col-12
           pre response: {{responseUpload}}
     .col-6
@@ -109,7 +110,17 @@ export default defineComponent({
     }
   },
   computed: {
-    ...mapGetters('polkadotWallet', ['isLoggedIn', 'selectedAccount'])
+    ...mapGetters('polkadotWallet', ['isLoggedIn', 'selectedAccount']),
+    getFilename () {
+      return this.file?.name ? this.file.name : undefined
+    }
+  },
+  watch: {
+    selectedAccount () {
+      console.log('selectedAccount', this.selectedAccount)
+      this.clearUpload()
+      this.clearDownload()
+    }
   },
   async beforeMount () {
     const isLoggedIn = this.$store.$hashedPrivateApi.isLoggedIn()
@@ -214,6 +225,7 @@ export default defineComponent({
       this.responseUpload.description = undefined
       this.responseUpload.payload = undefined
       this.responseUpload.type = undefined
+      this.accountToShare = undefined
     },
     clearDownload () {
       this.query = undefined
