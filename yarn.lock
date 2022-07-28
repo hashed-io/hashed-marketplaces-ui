@@ -2519,10 +2519,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@smontero/hashed-private-client-api@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.npmjs.org/@smontero/hashed-private-client-api/-/hashed-private-client-api-0.0.4.tgz"
-  integrity sha512-CuCYjDaMbZc+naewCxb0oeX/zGvNwjfFTJUPRE8fp1hCm5g9xuH+pBHHH6FYc9BHvpnGBlxhjkPlgcSnDwka/Q==
+"@smontero/hashed-private-client-api@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@smontero/hashed-private-client-api/-/hashed-private-client-api-0.0.5.tgz#b517b7995ce3a8806ab153608dd526f3f1aeae4e"
+  integrity sha512-7IfQUzQa+WgIGRGvMeKdj1j+E9Cn4yTBvvx2Q5dluIiynMX7cscir+XSbCGnXvpT052KC0KyCqM3HcX6J7reSw==
   dependencies:
     "@apollo/client" "^3.6.8"
     crypto "^1.0.1"
@@ -2531,6 +2531,7 @@
     graphql "^16.5.0"
     ipfs-http-client "^55.0.0"
     it-all "^1.0.6"
+    jwt-decode "^3.1.2"
     mime-types "^2.1.35"
     sha.js "^2.4.11"
     uint8arrays "^3.0.0"
@@ -11405,6 +11406,11 @@ junk@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npmjs.org/junk/-/junk-3.1.0.tgz"
   integrity sha512-pBxcB3LFc8QVgdggvZWyeys+hnrNWg4OcZIU/1X59k5jQdLBlCsYGRQaz234SqoRLTCgMH00fY0xRJH+F9METQ==
+
+jwt-decode@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
+  integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"

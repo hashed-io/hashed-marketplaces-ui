@@ -213,9 +213,22 @@ class MarketplaceApi extends BasePolkadotApi {
     return details
   }
 
+  /**
+   * @name ApplyFor
+   * @description This function call apply extrinsic
+   */
   async applyFor ({ marketId, user, fields, custodianFields }, subTrigger) {
     console.log('submitApplicationForm', marketId, user, custodianFields, fields, subTrigger)
     return this.callTx('apply', user, [marketId, fields, custodianFields])
+  }
+
+  /**
+   * @name reapplyFor
+   * @description This function call reapply extrinsic
+   */
+  async reapplyFor ({ marketId, user, fields, custodianFields }, subTrigger) {
+    console.log('submitReApplicationForm', marketId, user, custodianFields, fields, subTrigger)
+    return this.callTx('reapply', user, [marketId, fields, custodianFields])
   }
 
   async createMarketplace ({ admin, user, label }, subTrigger) {
@@ -234,9 +247,9 @@ class MarketplaceApi extends BasePolkadotApi {
    * @param {Function} subTrigger Function to trigger when subscription detect changes
    * @returns {Object}
    */
-  async enrollApplicant ({ marketId, user, accountOrApplication, approved }, subTrigger) {
-    console.log('enrollApplicant', marketId, user, accountOrApplication, approved, subTrigger)
-    return this.callTx('enroll', user, [marketId, accountOrApplication, approved])
+  async enrollApplicant ({ marketId, user, accountOrApplication, approved, feedback }, subTrigger) {
+    console.log('enrollApplicant', marketId, user, accountOrApplication, approved, feedback, subTrigger)
+    return this.callTx('enroll', user, [marketId, accountOrApplication, approved, feedback])
   }
 
   /**

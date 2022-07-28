@@ -30,6 +30,13 @@ q-expansion-item(group="applicants")
           q-card.card-btn(bordered no-shadow v-ripple)
             file-item(v-bind="file")
               //- q-tooltip Click to open file
+    #feedback
+      q-input.q-mt-md(
+        label="Feedback"
+        v-model="feedback"
+        autogrow
+        outlined
+      )
     .row.q-mt-sm.justify-end.q-gutter-x-sm
       q-btn(
         v-if="status !== 'Approved' && showActions"
@@ -39,6 +46,7 @@ q-expansion-item(group="applicants")
         outline
         no-caps
         @click="enroll"
+        :disabled="!haveFeedback"
       )
       q-btn(
         v-if="status !== 'Rejected' && status !== 'Approved' && showActions"
@@ -49,6 +57,7 @@ q-expansion-item(group="applicants")
         size="md"
         no-caps
         @click="reject"
+        :disabled="!haveFeedback"
       )
   slot
 </template>
@@ -91,7 +100,8 @@ export default {
   emits: ['onEnroll', 'onReject'],
   data () {
     return {
-      marketLabel: undefined
+      marketLabel: undefined,
+      feedback: undefined
     }
   },
   computed: {
@@ -113,6 +123,9 @@ export default {
     },
     getFiles () {
       return this.fields.filter(field => field.payload instanceof File)
+    },
+    haveFeedback () {
+      return !!this.feedback
     }
   },
   async created () {
@@ -126,7 +139,8 @@ export default {
         id: this.id,
         address: this.address,
         notes: this.getNotes,
-        files: this.getFiles
+        files: this.getFiles,
+        feedback: this.feedback
       }
       /**
        * This event is emitted when the user click on enroll button
@@ -138,7 +152,8 @@ export default {
         id: this.id,
         address: this.address,
         notes: this.getNotes,
-        files: this.getFiles
+        files: this.getFiles,
+        feedback: this.feedback
       }
       /**
        * This event is emitted when the user click on reject button
