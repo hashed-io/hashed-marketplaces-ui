@@ -9,14 +9,14 @@ q-expansion-item(group="applicants")
           flat
           color="primary"
           :label="marketLabel"
-          class="q-mt-md label"
+          class="q-mt-md text-white"
         )
         q-chip(
           v-if="!marketId"
           :label="status"
           size="md"
           :color="getColor"
-          class="text-white q-mt-md label"
+          class="q-mt-md text-white"
         )
   #body.q-pa-sm
     .text-subtitle2.text-weight-regular.q-pb-md {{ $t('pages.marketplace.details.notesTitle') }}:
@@ -32,6 +32,7 @@ q-expansion-item(group="applicants")
               //- q-tooltip Click to open file
     #feedback
       q-input.q-mt-md(
+        v-if="showActions && status !== 'Approved'"
         label="Feedback"
         v-model="feedback"
         autogrow
@@ -119,7 +120,9 @@ export default {
     },
     getNotes () {
       const notesIdentifier = 'Notes'
-      return this.fields.find(field => field.displayName === notesIdentifier).payload.notes
+      const fileIdentifier = 'description'
+      const notesField = this.fields.find(field => field[fileIdentifier] === notesIdentifier)
+      return (notesField && typeof notesField.payload === 'object') ? notesField?.payload?.notes : notesField?.payload
     },
     getFiles () {
       return this.fields.filter(field => field.payload instanceof File)
@@ -172,7 +175,6 @@ export default {
 
 <style lang="stylus" scoped>
 @import '~/css/app.styl'
-
 .card-btn:hover
   transform: scale(1.01)
   cursor: pointer

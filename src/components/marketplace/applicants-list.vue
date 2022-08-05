@@ -4,7 +4,7 @@
     q-card.q-my-md(v-for="applicant in applicants")
       applicant-expander-item(v-bind="{...applicant, showActions}" @onEnroll="onEnrollApplicant" @onReject="onRejectApplicant")
   #applicantDetailsEmpty(v-else)
-    q-card(bordered)
+    q-card(bordered flat)
       q-card-section
         .text-h5.q-py-lg {{$t('pages.marketplace.details.noApplicants')}}
 </template>
