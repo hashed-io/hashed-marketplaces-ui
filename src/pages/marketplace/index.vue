@@ -16,17 +16,18 @@
     v-model="tab"
     :breakpoint="0"
     no-caps
-    indicator-color="transparent"
+    indicator-color="white"
     align="justify"
+    class="bg-secondary text-white"
     active-class="active-tab"
   )
     q-tab(name="myMarketplaces" :label="$t('pages.marketplace.tabs.myMarketplaces')")
     q-tab(name="allMarketplaces" :label="$t('pages.marketplace.tabs.allMarketplaces')")
 
   q-tab-panels(v-model="tab")
-    q-tab-panel(name="myMarketplaces" class="tabPanel")
+    q-tab-panel(name="myMarketplaces" class="tabPanel bg-inherit")
       marketplace-list(:type="'my-marketplaces'" :marketplaces="myMarketplaces" emptyLabel="You don't have marketplaces yet" @selectedMarketplace="onSelectMarketplace")
-    q-tab-panel(name="allMarketplaces" class="tabPanel")
+    q-tab-panel(name="allMarketplaces" class="tabPanel bg-inherit")
       marketplace-list(:marketplaces="allMarketplaces" emptyLabel="Marketplaces have not yet been created" @selectedMarketplace="onSelectMarketplace" @onLoadMarkets="onLoadMoreMarkets")
   #modals
     q-dialog(v-model="modals.isShowingAddMarketplace" persistent)
@@ -153,5 +154,5 @@ export default {
   border-radius: 10px 10px 0px 0px
 .tabPanel
   padding: 1rem 0rem 0rem 0rem
-  background-color: $bg-body
+  background-color: $grayLigth
 </style>
