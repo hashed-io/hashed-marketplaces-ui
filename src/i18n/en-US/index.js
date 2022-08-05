@@ -35,14 +35,20 @@ export default {
     errors: {
       required: 'This field is required',
       isNotValidXpub: 'This is not a valid XPUB',
+      isNotValidFingerprint: 'This is not a valid fingerprint',
+      isNotValidDerivationPath: 'This is not a valid derivation path',
       positiveInteger: 'This field must contain a positive integer number',
       greaterOrEqualThan: 'The value must be greater than or equal to {value}',
       lessOrEqualThan: 'The value must be less than or equal to {value}',
       containAtLeastCosigners: 'This field must contain at least {value} cosigners address',
       containLessThanCosigners: 'This field must contain at less than {value} cosigners address',
       isNotValidMainetBTC: 'This field must contain a valid mainet BTC address',
+      isNotValidPolkadotAddress: 'Is not a valid polkadot address',
+      notOwnAccount: 'Not owner account allowed, please set this on "Include owner as cosigner" option',
       fileRequired: 'This field is required',
-      isNotValidPolkadotAddress: 'Is not a valid polkadot address'
+      greaterOrEqualThanString: 'The length must be greater than or equal to {value}',
+      lessOrEqualThanString: 'The length must be less than or equal to {value}',
+      notEqual: 'The value must be different to the Owner address'
     }
   },
   pages: {
@@ -74,7 +80,7 @@ export default {
         custodian: {
           label: 'Custodian',
           placeholder: 'Custodian address',
-          checkboxLabel: 'Add a third-party custodian (optional)'
+          infoLabel: 'Add a third-party custodian (optional)'
         },
         filesTitle: 'Upload files',
         addFilesButton: 'Add Files',
@@ -100,6 +106,28 @@ export default {
       },
       applicants: {
         title: 'Applicants'
+      },
+      privacy: {
+        title: 'Privacy solution playground',
+        uploadSection: {
+          title: 'Upload file',
+          fileInput: 'Choose file',
+          custodian: 'Address of the custodian',
+          shareFile: 'Share file with other addresses'
+        },
+        downloadSection: {
+          title: 'Download file',
+          cidInput: 'Download file by CID or ID',
+          isShareData: 'The data is shared?'
+        },
+        buttons: {
+          save: 'Save',
+          clear: 'Clear',
+          download: 'Download',
+          openFile: 'Open file'
+        },
+        query: 'Query: ',
+        response: 'Response: '
       }
     }
   }
