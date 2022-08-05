@@ -17,6 +17,16 @@ export default {
     },
     hideLoading () {
       this.notifications.hideLoading()
+    },
+    copyTextToClipboard (data) {
+      try {
+        navigator.clipboard.writeText(data).then(e => {
+          this.showNotification({ message: 'Text copied to clipboard' })
+        })
+      } catch (e) {
+        console.error('error', e)
+        this.showNotification({ message: e.message || e, color: 'negative' })
+      }
     }
   }
 }
@@ -44,7 +54,7 @@ export const showGlobalLoading = (props) => {
   let message, color, background, type
   const defaultMessage = 'Please wait a moment...'
   const defaultColor = 'white'
-  const defaultBackground = 'gray'
+  const defaultBackground = '#263238'
   const defaultType = 'loading'
 
   if (props) {
