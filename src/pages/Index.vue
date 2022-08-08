@@ -1,21 +1,21 @@
 <template lang="pug">
 #container
-  .text-h6 Home
+  .text-h6 {{$t('pages.marketplace.privacy.title')}}
   .row.q-col-gutter-xl
     .col-6
-      .text-h6.q-py-md Upload file
+      .text-h6.q-py-md {{$t('pages.marketplace.privacy.uploadSection.title')}}
       .row.q-gutter-md
         .col-12
           q-file(
             v-model="file"
-            label="Upload File"
+            :label="$t('pages.marketplace.privacy.uploadSection.fileInput')"
             outlined
           )
         .col-12(v-if="isChecked")
           account-input(
             v-model="accountToShare"
             :rules="[rules.isValidPolkadotAddress]"
-            label="Account to share"
+            :label="$t('pages.marketplace.privacy.uploadSection.custodian')"
             outlined
           )
         .col-12
@@ -23,68 +23,69 @@
             class="q-mr-md"
             @click="uploadFile"
             color="primary"
-          ) Save
+          ) {{$t('pages.marketplace.privacy.buttons.save')}}
           q-btn(
             @click="clearUpload"
             color="primary"
-          ) Clear
+          ) {{$t('pages.marketplace.privacy.buttons.clear')}}
 
           q-toggle(
             v-model="isChecked"
-            label="Share file with other"
+            :label="$t('pages.marketplace.privacy.uploadSection.shareFile')"
             color="primary"
             label-position="left"
             label-width="100px"
             outlined
           )
-        .col-12 Query: {{getFilename}}
+        .col-12 {{$t('pages.marketplace.privacy.query')}} {{getFilename}}
         .col-12
-          pre response: {{responseUpload}}
+          pre {{$t('pages.marketplace.privacy.response')}} {{responseUpload}}
     .col-6
-      .text-h6.q-py-md Download file
+      .text-h6.q-py-md {{$t('pages.marketplace.privacy.downloadSection.title')}}
       .row.q-gutter-md
         .col-12
           q-input(
             outlined
             v-model="query"
-            label="Download File (CID or ID)"
+            :label="$t('pages.marketplace.privacy.downloadSection.cidInput')"
           )
         .col-12
           q-btn(
             @click="downloadFile"
             class="q-mr-md"
             color="primary"
-          ) Download
+          ) {{$t('pages.marketplace.privacy.buttons.download')}}
           q-btn(
             @click="clearDownload"
             color="primary"
-          ) Clear
+          ) {{$t('pages.marketplace.privacy.buttons.clear')}}
           q-toggle(
             v-model="toggleDownload"
-            label="Shared data?"
+            :label="$t('pages.marketplace.privacy.downloadSection.isShareData')"
           )
-        .col-12 Query: {{query}}
+        .col-12 {{$t('pages.marketplace.privacy.query')}} {{query}}
         .col-12
-          pre response: {{getUploadResponse}}
+          pre {{$t('pages.marketplace.privacy.response')}} {{getUploadResponse}}
         .col-12
           q-btn(
             color="primary"
             v-if="getUploadResponse.payload"
             @click="openFile"
-          ) open File
+          ) {{$t('pages.marketplace.privacy.buttons.openFile')}}
 </template>
 
 <script>
+import { authentication } from '~/mixins/authentication'
 import { validation } from '~/mixins/validation'
 import AccountInput from '~/components/common/account-input.vue'
 import { defineComponent } from 'vue'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
 export default defineComponent({
   name: 'PageIndex',
   components: {
     AccountInput
   },
-  mixins: [validation],
+  mixins: [validation, authentication],
   data () {
     return {
       isChecked: false,
@@ -129,7 +130,7 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapMutations('polkadotWallet', ['setIsLoggedIn']),
+    // ...mapMutations('polkadotWallet', ['setIsLoggedIn']),
     async uploadFile () {
       if (this.isLoggedIn && this.selectedAccount) {
         const hpApi = this.$store.$hashedPrivateApi
@@ -234,19 +235,6 @@ export default defineComponent({
       this.getUploadResponse.description = undefined
       this.getUploadResponse.payload = undefined
       this.getUploadResponse.type = undefined
-    },
-    async loginUser () {
-      try {
-        this.showLoading({ message: 'You must be logged in to submit an application' })
-        await this.$store.$hashedPrivateApi.login(this.selectedAccount.address)
-        this.setIsLoggedIn(true)
-      } catch (error) {
-        console.error(error)
-        this.showNotification({ message: error.message || error, color: 'negative' })
-        this.setIsLoggedIn(false)
-      } finally {
-        this.hideLoading()
-      }
     }
   }
 })

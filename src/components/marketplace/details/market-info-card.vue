@@ -1,36 +1,45 @@
 <template lang="pug">
 #container
-  q-card(flat class="card-style")
+  q-card(class="bg-inherit" flat)
     q-card-section
-      .row.justify-between
+      .row.justify-center
         .text-h5 {{market.label}}
     q-card-section
-      .text-subtitle2.text-weight-regular.q-my-md {{ $t('pages.marketplace.details.numberPaparticipantsTitle') }}
-        .text-body2 {{participants.length}}
-      .row.q-col-gutter-md
-        .col-6.q-pb-md
-          .text-subtitle2.text-weight-regular {{ $t('pages.marketplace.role.administrator') }}
+      .row.text-center
+        .col-6
+          .text-subtitle1.text-weight-regular.q-my-md {{ $t('pages.marketplace.details.numberPaparticipantsTitle') }}
+            .headline2 {{participants.length}}
+        .col-6
+          .row.q-col-gutter-md
+            .col-6.q-pb-md
+              .text-subtitle1.text-weight-regular {{ $t('pages.marketplace.role.administrator') }}
+              account-item(
+                class="q-mt-md"
+                :address="market.admin?.address"
+                shortDisplay
+              )
+            .col-6.q-pb-md
+              .text-subtitle1.text-weight-regular {{ $t('pages.marketplace.role.owner') }}
+              account-item(
+                class="q-mt-md"
+                :address="market.owner?.address"
+                shortDisplay
+              )
+  .row.text-center.q-pa-md
+    .text-subtitle1.text-weight-regular.q-py-md {{$t('pages.marketplace.details.participantsTitle')}}
+    .col-12
+      div(v-if="participants.length > 0 ")
+        .row(v-for="participant in participants")
           account-item(
-            :address="market.admin?.address"
+            class="account-item-style"
+            :address="participant"
+            bordered
+            flat
+            shortDisplay
           )
-        .col-6.q-pb-md
-          .text-subtitle2.text-weight-regular {{ $t('pages.marketplace.role.owner') }}
-          account-item(
-            :address="market.owner?.address"
-          )
-      .row
+      .row.q-gutter-md(v-else)
         .col-12
-          .text-subtitle2.text-weight-regular.q-py-md {{$t('pages.marketplace.details.participantsTitle')}}
-          .row.q-gutter-md(v-if="participants.length > 0 ")
-            account-item(
-              v-for="participant in participants"
-              :address="participant"
-              bordered
-              shortDisplay
-            )
-          .row.q-gutter-md(v-else)
-            .col-12
-              .text-subtitle2.text-weight-regular {{$t('pages.marketplace.details.noParticipants')}}
+          .text-subtitle2.text-weight-regular {{$t('pages.marketplace.details.noParticipants')}}
 </template>
 
 <script>
@@ -70,6 +79,10 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
-
+<style lang="stylus" scoped>
+.account-item-style
+  width : 100%
+  margin-top: 1rem
+  margin-left: 5px
+  margin-right: 5px
 </style>

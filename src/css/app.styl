@@ -141,12 +141,12 @@ body
   // font-weight: $font-weight-semibold !important
   // font-size: 16px !important
 .q-tab
-  color: $color-secondary !important
+  color: $color-white !important
   background: transparent !important
   border-style: solid solid solid solid !important
   border-width: 1px !important
 .active-tab
-  background: $color-primary-dark !important
+  background: $color-primary !important
   color: $color-white !important
   border-style: solid solid solid solid !important
   border-color: $color-primary-dark !important
@@ -156,3 +156,14 @@ body
 .card-style
   padding : 0rem 0rem !important
   background: transparent
+
+.animated-item
+  transition: all 0.3s
+
+.animated-item:hover
+  transform: scale(1.02)
+  cursor: pointer
+  background: rgba(0,0,0,0.01)
+
+.bg-inherit
+  background: inherit !important

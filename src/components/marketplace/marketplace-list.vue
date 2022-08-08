@@ -4,8 +4,8 @@
     .row.justify-center.q-pa-md.text-body2 {{ emptyLabel }}
   #items(v-else)
     .row.justify-start.q-px-md
-      .col-4
-        t-input(
+      .col-12
+        h-input(
           testid="label_input"
           :label="$t('pages.marketplace.searchInput.label')"
           v-model="search"
@@ -23,8 +23,8 @@
           .row.justify-center.q-my-md
             q-spinner-dots(color="primary" size="40px")
         .row.q-col-gutter-md
-          .col-3(v-for="marketplace in resultSearch" :key="marketplace.key")
-            marketplace-item(:marketplace="marketplace" @onClick="selectMarketplace")
+          .col-xs-12.col-sm-4.col-md-3(v-for="marketplace in resultSearch" :key="marketplace.key")
+            marketplace-item.animated-item(:marketplace="marketplace" @onClick="selectMarketplace")
 </template>
 
 <script>

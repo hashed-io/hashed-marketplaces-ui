@@ -21,14 +21,14 @@ export default async ({ app, store }) => {
       const { signature } = await marketplaceApi.signMessage(message, address)
       return signature
     }
-    const hp = new HashedPrivateApi({
+    const hashedPrivateApi = new HashedPrivateApi({
       ipfsURL: process.env.IPFS_URL,
       privateURI: process.env.PRIVATE_URI,
       signFn
     })
-    await hp.connect()
-    console.log('Hashed Private Created', hp)
-    store['$hashedPrivateApi'] = hp
+    await hashedPrivateApi.connect()
+    console.log('Hashed Private Created', hashedPrivateApi)
+    store['$hashedPrivateApi'] = hashedPrivateApi
     store['$polkadotApi'] = api
     store['$nbvStorageApi'] = nbvStorageApi
     store['$marketplaceApi'] = marketplaceApi
